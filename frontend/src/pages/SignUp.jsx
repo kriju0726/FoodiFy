@@ -59,7 +59,7 @@ function SignUp() {
           role,
           mobile
         }, {withCredentials:true})
-        dispatch(setUserData(result.data))
+        dispatch(setUserData(data))
       } catch (error) {
         console.log(error);
       }
