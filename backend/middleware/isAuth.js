@@ -1,5 +1,5 @@
-import jwt from "jsonwebtoken"        //This file for getting/fetching token from cookies(chrome) to know about cuurent User...
-
+import jwt from "jsonwebtoken"        //This file for getting/fetching token from cookies(chrome)(which was created during signUp/signIn),  
+                                      //to know about curent User, by extracting their user._id...
 
 const isAuth = (req, res, next) => {
   const token = req.cookies.token;

@@ -14,8 +14,6 @@ const userSlice = createSlice({
             state.city = action.payload
         }
     }
-
-    
 })
 
 export const { setUserData, setCity } = userSlice.actions
