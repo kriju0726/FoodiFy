@@ -9,6 +9,8 @@ import Home from './pages/Home'
 import useGetCity from './hooks/useGetCity'
 import useGetMyShop from './hooks/useGetMyShop'
 import CreateEditShop from './pages/CreateEditShop'
+import AddItem from './pages/AddItem'
+import EditItem from './pages/EditItem'
 
 export const serverUrl = "http://localhost:5000/"
 
@@ -24,6 +26,8 @@ function App() {
       <Route path='/forgot-password' element={!userData ? <ForgotPassword/> : <Navigate to ={"/"}/>}/>
       <Route path='/' element={userData ? <Home/> : <Navigate to ={"/signin"}/>} />
       <Route path='/create-edit-shop' element={userData ? <CreateEditShop/> : <Navigate to ={"/signin"}/>} />
+      <Route path='/add-item' element={userData ? <AddItem/> : <Navigate to ={"/signin"}/>} />
+      <Route path='/edit-item' element={userData ? <EditItem/> : <Navigate to ={"/signin"}/>} />
     </Routes>
   )
 }
