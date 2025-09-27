@@ -2,13 +2,29 @@ import React from 'react'
 import { FaPen } from "react-icons/fa";
 import { FaTrashAlt } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
+import { serverUrl } from '../App';
+import { useDispatch } from 'react-redux';
+import { setMyShopData } from '../redux/ownerSlice';
+import axios from 'axios';
 
 function OwnerItemCard ({data}) {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+
+    const handleDelete = async () => {
+      try {
+        const result = await axios.get(`${serverUrl}api/item/delete/${data._id}`, 
+                       { withCredentials: true })
+        dispatch(setMyShopData(result.data))
+      } catch (error) {
+        console.log(error)
+      }
+    }
 
   return (
     <div className='flex bg-white shadow-md rounded-lg overflow-hidden border border-[#ff4d2d] w-full max-w-2xl'>
-      <div className='w-36 h-full max-w-2xl'>
+      <div className='w-36 flex-shrink-0 bg-gray-50 max-w-2xl'>
             <img src={data.image} alt="" className='w-full h-full object-cover'/>
       </div>
       <div className='flex flex-col justify-between p-3 flex-1'>
@@ -22,11 +38,12 @@ function OwnerItemCard ({data}) {
             <div className='text-[#ff4d2d] font-bold'>₹ {data.price}</div>
                 <div className=' flex items-center gap-2'>
                     <div className='text-[#ff4d2d] p-2 rounded-full cursor-pointer hover:bg-[#ff4d2d]/30' 
-                                    onClick={()=>navigate("/edit-item")}>
+                                    onClick={()=>navigate(`/edit-item/${data._id}`)}>
                                     <FaPen size={16} />
                     </div>
-                    <div className='text-[#ff4d2d] p-2 rounded-full cursor-pointer hover:bg-[#ff4d2d]/30'>
-                        <FaTrashAlt size={16} />
+                    <div className='text-[#ff4d2d] p-2 rounded-full cursor-pointer hover:bg-[#ff4d2d]/30'
+                                    onClick={handleDelete}>
+                                    <FaTrashAlt size={16} />
                     </div>
                 </div>
         </div>
