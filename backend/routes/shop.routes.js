@@ -1,13 +1,20 @@
 import express from "express"
-import { createShop, getMyShop } from "../controllers/shop.controllers.js";
+import { createShop, getMyShop, getShopByCity } from "../controllers/shop.controllers.js";
 import isAuth from "../middleware/isAuth.js"
 import { upload } from '../middleware/multer.js'
 
 const shopRouter = express.Router();
 shopRouter.post('/create-edit', isAuth, upload.single("image"), createShop);         
-shopRouter.get('/get-my-shop', isAuth, getMyShop);                                    
+shopRouter.get('/get-my-shop', isAuth, getMyShop);  
+shopRouter.get('/get-by-city/:city', isAuth, getShopByCity);                                    
 
 export default shopRouter
+
+
+
+
+
+
 
 
 //Here 'isAuth' is used to verify the token which is stored in cookie of browser(Chrome) and if it is verified then only

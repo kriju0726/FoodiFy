@@ -28,7 +28,6 @@ export const createShop = async(req, res) => {
     }
 }
 
-
 export const getMyShop = async (req, res) => {
     try {
         const shop = await Shop.findOne({owner:req.userId}).populate("owner").populate({
@@ -43,3 +42,22 @@ export const getMyShop = async (req, res) => {
         return res.status(500).json({message:`Get my Shop error ${error}`})
     }
 }
+
+export const getShopByCity = async (req, res) => {
+    try {
+        const {city} = req.params
+
+        const shops = await Shop.find({
+            city: { $regex: new RegExp(`^${city}$`, 'i') }
+        }).populate("items")
+
+        if(!shops){
+            return res.status(404).json({message:"No shop found"})
+        }
+        return res.status(200).json(shops)
+    } catch (error) {
+        return res.status(500).json({message:`Get shop by city error ${error}`})
+    }
+}
+
+

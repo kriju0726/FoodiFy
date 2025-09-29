@@ -31,10 +31,9 @@ function Nav() {
   };
 
   return (
-    <div
-      className="w-full h-[80px] flex items-center justify-between md:justify-center gap-[30px]
-    fixed top-0 z-[9999] bg-[#fff9f6] overflow-visible"
-    >
+    <div className="w-full h-[80px] flex items-center justify-between md:justify-center gap-[30px]
+    fixed top-0 z-[9999] bg-[#fff9f6] overflow-visible">
+      
       {showSearch && userData.role == "user" && (
         <div className="w-[90%] h-[70px] bg-white shadow-xl rounded-lg items-center gap-[20px] flex fixed top-[80px] left-[5%] md:hidden">
           <div className="flex items-center w-[30%] overflow-hidden gap-[10px] px-[10px] border-r-[2px] border-gray-400">
@@ -79,7 +78,8 @@ function Nav() {
         {userData.role=="owner" ? <>
         {myShopData && <> <button className="hidden md:flex items-center gap-1 p-2 cursor-pointer rounded-full bg-[#ff4d2d]/10 text-[#ff4d2d]"
                                              onClick={() => navigate("/add-item")}>
-                <FaPlus size={20}/> <span>Add Food Item</span>
+                                             <FaPlus size={20}/> 
+                                             <span>Add Food Item</span>
             </button>
             <button className="md:hidden flex items-center p-2 cursor-pointer rounded-full bg-[#ff4d2d]/10 text-[#ff4d2d]"
                                onClick={() => navigate("/add-item")}>

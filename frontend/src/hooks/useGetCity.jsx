@@ -8,6 +8,7 @@ function useGetCity() {
   const dispatch = useDispatch()
   const {userData} = useSelector(state => state.user)
   const apiKey = import.meta.env.VITE_GEOAPIKEY
+  
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(async (position) => {
       const latitude = position.coords.latitude
